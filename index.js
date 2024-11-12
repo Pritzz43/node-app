@@ -7,8 +7,7 @@ app.get('/', (req, res) => {
     { id: 2, name: 'Alan ', age: 60},
     { id: 4, name: 'Sara', age: 42 },
     { id: 4, name: 'Saral', age: 42 },
-    { id: 4, name: 'Node', age: 45 },
-    { id: 4, name: 'ngnix', age: 45 }
+    { id: 4, name: 'Pratham', age: 45 },
   ]);
 });
 
