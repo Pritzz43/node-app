@@ -3,4 +3,4 @@ services:
     container_name: "node-app"
     restart : always 
     ports: 
-      - 5050:5000
+      - 5050:5080
