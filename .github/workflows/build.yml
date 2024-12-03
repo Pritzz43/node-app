@@ -29,7 +29,13 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies
-        run: npm install 
+        run: npm install
+
+      # Install Java 17
+      - name: Install Java 17
+        run: |
+          sudo apt-get update
+          sudo apt-get install openjdk-17-jdk -y   
 
       # Run SonarCloud scan
       - name: Run SonarCloud Scan
@@ -37,4 +43,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
