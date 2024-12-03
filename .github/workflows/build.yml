@@ -22,8 +22,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' 
-          cache: 'yarn' 
+          node-version: '16' # Specify your Node.js version here
+          cache: 'npm' # Cache npm dependencies
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests and generate coverage
+        run: npm run test -- --coverage
 
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
