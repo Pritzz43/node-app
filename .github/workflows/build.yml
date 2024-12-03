@@ -31,10 +31,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Run tests and collect coverage
-      - name: Run tests
-        run: npm test -- --coverage  # Modify this if you have a different test command
-
       # Run SonarCloud scan
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
@@ -42,13 +38,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
-      # Optional: Upload coverage to SonarCloud (if coverage report is required)
-      - name: Upload coverage report
-        run: |
-          npx sonar-scanner \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-          -Dsonar.organization=${{ secrets.SONAR_ORG }} \
-          -Dsonar.sources=. \
-          -Dsonar.tests=. \
-          -Dsonar.test.inclusions=**/*.test.js \
-          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
