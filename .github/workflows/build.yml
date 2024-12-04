@@ -34,9 +34,7 @@ jobs:
       # Run SonarCloud analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        with:
-          organization: ${{ secrets.SONAR_ORG }}  # Your SonarCloud organization key
-          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}  # Your SonarCloud project key
+        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token (provided automatically by GitHub Actions)
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}  # SonarCloud token (set in GitHub secrets)
