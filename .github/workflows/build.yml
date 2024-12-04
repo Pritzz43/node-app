@@ -1,0 +1,42 @@
+name: Build and Analyze with SonarCloud
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+  push:
+    branches:
+      - '**' # Runs on push to the main branch
+  pull_request:
+    types: [opened, synchronize, reopened]  # Runs on pull request events (opened, synchronized, reopened)
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Fetch full history to ensure SonarCloud can analyze branches correctly
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'  # Specify the Node.js version (adjust as necessary)
+
+      # Install dependencies using npm
+      - name: Install dependencies
+        run: npm install
+
+
+      # Run SonarCloud analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: ${{ secrets.SONAR_ORG }}  # Your SonarCloud organization key
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}  # Your SonarCloud project key
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token (provided automatically by GitHub Actions)
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}  # SonarCloud token (set in GitHub secrets)
