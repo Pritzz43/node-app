@@ -37,4 +37,4 @@ jobs:
         
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token (provided automatically by GitHub Actions)
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}  # SonarCloud token (set in GitHub secrets)
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # SonarCloud token (set in GitHub secrets)
